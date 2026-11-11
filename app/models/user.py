@@ -12,6 +12,8 @@ from sqlalchemy.sql import func
 from app.database import Base
 from app.enums.role_enum import RoleEnum
 
+from sqlalchemy.orm import relationship
+
 
 class User(Base):
     __tablename__ = "users"
@@ -117,3 +119,5 @@ class User(Base):
         server_default=func.now(),
         onupdate=func.now()
     )
+
+    orders = relationship("Order", back_populates="user")
